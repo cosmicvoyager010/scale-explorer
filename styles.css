@@ -1,1 +1,291 @@
+/* ==========================================
+   Scale Explorer v0.2
+   styles.css
+========================================== */
 
+:root{
+
+    --bg:#05070d;
+    --bg2:#08101d;
+    --bg3:#15213b;
+
+    --text:#ffffff;
+    --secondary:#9ea9bc;
+    --accent:#4da3ff;
+
+}
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+html,
+body{
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    color:var(--text);
+
+    background:
+    radial-gradient(
+        circle at top,
+        var(--bg3) 0%,
+        var(--bg2) 35%,
+        var(--bg) 100%
+    );
+
+}
+
+/* =========================
+   Starfield
+========================= */
+
+#stars{
+
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:0;
+
+}
+
+.star{
+
+    position:absolute;
+
+    background:white;
+
+    border-radius:50%;
+
+    opacity:.25;
+
+    animation:twinkle 8s infinite alternate;
+
+}
+
+.star.medium{
+
+    width:2px;
+    height:2px;
+    opacity:.55;
+
+}
+
+.star.large{
+
+    width:3px;
+    height:3px;
+    opacity:.9;
+
+}
+
+@keyframes twinkle{
+
+    from{
+        opacity:.2;
+    }
+
+    to{
+        opacity:.95;
+    }
+
+}
+
+/* =========================
+   Welcome Screen
+========================= */
+
+#welcome{
+
+    position:absolute;
+    inset:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    z-index:10;
+
+    transition:opacity 1.2s ease;
+
+}
+
+h1{
+
+    font-size:clamp(52px,8vw,80px);
+
+    font-weight:200;
+
+    letter-spacing:5px;
+
+}
+
+.subtitle{
+
+    margin-top:18px;
+
+    font-size:20px;
+
+    color:var(--secondary);
+
+}
+
+button{
+
+    margin-top:60px;
+
+    padding:16px 42px;
+
+    border-radius:999px;
+
+    border:1px solid rgba(255,255,255,.20);
+
+    background:rgba(255,255,255,.08);
+
+    color:white;
+
+    backdrop-filter:blur(8px);
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+button:hover{
+
+    background:rgba(255,255,255,.15);
+
+    transform:translateY(-2px);
+
+}
+
+.version{
+
+    position:absolute;
+
+    top:24px;
+
+    right:24px;
+
+    color:#75839c;
+
+    font-size:12px;
+
+    letter-spacing:2px;
+
+}
+
+/* =========================
+   Universe
+========================= */
+
+#universe{
+
+    display:none;
+
+    position:absolute;
+
+    inset:0;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-direction:column;
+
+    z-index:2;
+
+}
+
+#earth{
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle at 30% 30%,
+    #6bc5ff,
+    #2c73d2 65%,
+    #0d2d67 100%);
+
+    box-shadow:
+        0 0 60px rgba(77,163,255,.45);
+
+    animation:breathe 6s ease-in-out infinite;
+
+}
+
+@keyframes breathe{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.03);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+
+#moon{
+
+    width:28px;
+
+    height:28px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(circle at 30% 30%,
+    white,
+    #bfbfbf);
+
+    margin-top:70px;
+
+}
+
+footer{
+
+    position:absolute;
+
+    bottom:24px;
+
+    width:100%;
+
+    text-align:center;
+
+    color:#66758c;
+
+    font-size:13px;
+
+}
