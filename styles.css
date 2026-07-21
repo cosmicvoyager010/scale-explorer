@@ -1,14 +1,14 @@
 /* ==========================================
-   Scale Explorer v0.2
+   Scale Explorer v0.3
 ========================================== */
 
 :root{
-    --bg:#05070d;
-    --bg2:#08101d;
-    --bg3:#15213b;
+    --space:#04060d;
+    --space2:#08111d;
+    --space3:#102241;
 
     --text:#ffffff;
-    --secondary:#a9b5c8;
+    --secondary:#9fb2c9;
     --accent:#4da3ff;
 }
 
@@ -34,28 +34,26 @@ body{
         Arial,
         sans-serif;
 
-    color:var(--text);
-
     background:
-    radial-gradient(
-        circle at top,
-        var(--bg3) 0%,
-        var(--bg2) 35%,
-        var(--bg) 100%
-    );
+        radial-gradient(circle at top,
+        var(--space3) 0%,
+        var(--space2) 40%,
+        var(--space) 100%);
+
+    color:var(--text);
 
 }
 
-/* ==========================================
-   Animated Star Background
-========================================== */
+/* ===========================
+   Star Background
+=========================== */
 
 #stars{
 
     position:fixed;
     inset:0;
-    z-index:0;
     overflow:hidden;
+    z-index:0;
 
 }
 
@@ -69,8 +67,6 @@ body{
     background:white;
 
     border-radius:50%;
-
-    opacity:.5;
 
     animation:twinkle 6s infinite alternate;
 
@@ -93,25 +89,28 @@ body{
 @keyframes twinkle{
 
     from{
+
         opacity:.2;
         transform:scale(1);
+
     }
 
     to{
+
         opacity:1;
-        transform:scale(1.4);
+        transform:scale(1.5);
+
     }
 
 }
 
-/* ==========================================
-   Welcome Screen
-========================================== */
+/* ===========================
+   Welcome
+=========================== */
 
 #welcome{
 
     position:absolute;
-
     inset:0;
 
     display:flex;
@@ -124,35 +123,35 @@ body{
 
     text-align:center;
 
-    z-index:10;
+    z-index:20;
 
-    transition:opacity 1s ease;
+    transition:opacity 1.2s ease;
 
 }
 
 #welcome h1{
 
-    font-size:clamp(56px,8vw,90px);
+    font-size:clamp(60px,8vw,96px);
 
     font-weight:200;
 
-    letter-spacing:4px;
-
-    margin-bottom:20px;
+    letter-spacing:5px;
 
 }
 
 .subtitle{
 
+    margin-top:20px;
+
     color:var(--secondary);
 
     font-size:22px;
 
-    margin-bottom:50px;
-
 }
 
 #beginButton{
+
+    margin-top:55px;
 
     padding:16px 42px;
 
@@ -174,9 +173,9 @@ body{
 
 #beginButton:hover{
 
-    background:rgba(255,255,255,.16);
+    background:rgba(255,255,255,.18);
 
-    transform:translateY(-2px);
+    transform:translateY(-3px);
 
 }
 
@@ -185,97 +184,83 @@ body{
     position:absolute;
 
     top:20px;
-
     right:20px;
-
-    color:#7c8ca5;
 
     font-size:12px;
 
+    color:#72839d;
+
 }
 
-/* ==========================================
-   Universe Scene
-========================================== */
+/* ===========================
+   Universe
+=========================== */
 
 #universe{
+
+    display:none;
 
     position:absolute;
 
     inset:0;
 
-    display:none;
-
-    flex-direction:column;
-
     justify-content:center;
 
     align-items:center;
 
-    z-index:2;
+    flex-direction:column;
+
+    z-index:5;
 
 }
 
-#earth{
-
-    width:100px;
-    height:100px;
-
-    border-radius:50%;
-
-    background:
-    radial-gradient(
-        circle at 35% 35%,
-        #7dd3ff,
-        #3d9bff 60%,
-        #173b83 100%
-    );
-
-    box-shadow:
-        0 0 60px rgba(77,163,255,.45);
-
-    animation:breathe 6s infinite;
-
-}
-
-@keyframes breathe{
-
-    0%{
-        transform:scale(1);
-    }
-
-    50%{
-        transform:scale(1.05);
-    }
-
-    100%{
-        transform:scale(1);
-    }
-
-}
+/* ===========================
+   Moon
+=========================== */
 
 #moon{
 
-    width:32px;
-    height:32px;
-
-    margin-top:70px;
+    width:120px;
+    height:120px;
 
     border-radius:50%;
 
     background:
-    radial-gradient(
-        circle at 30% 30%,
-        white,
-        #bfbfbf
-    );
+        radial-gradient(circle at 30% 30%,
+        #ffffff,
+        #d7d7d7 65%,
+        #a9a9a9);
 
     box-shadow:
-        0 0 20px rgba(255,255,255,.4);
+        0 0 40px rgba(255,255,255,.45);
+
+    animation:
+        floatMoon 8s ease-in-out infinite;
 
 }
 
-#earth-container,
+@keyframes floatMoon{
+
+    0%{
+
+        transform:translateY(0px);
+
+    }
+
+    50%{
+
+        transform:translateY(-8px);
+
+    }
+
+    100%{
+
+        transform:translateY(0px);
+
+    }
+
+}
+
 #moon-container{
 
     display:flex;
@@ -284,19 +269,9 @@ body{
 
     align-items:center;
 
-    gap:12px;
+    gap:18px;
 
-}
-
-#moon-container{
-
-    margin-top:70px;
-
-}
-
-h2{
-
-    font-weight:400;
+    z-index:10;
 
 }
 
@@ -306,22 +281,74 @@ h2{
 
 }
 
-/* ==========================================
+/* ===========================
+   Earth Horizon
+=========================== */
+
+#earth-horizon{
+
+    position:absolute;
+
+    bottom:-280px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:180vw;
+    height:520px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(circle at center,
+        #123d91,
+        #05142f 70%,
+        #000814);
+
+    box-shadow:
+        0 -20px 120px rgba(60,120,255,.35);
+
+}
+
+#atmosphere{
+
+    position:absolute;
+
+    top:-12px;
+
+    left:0;
+
+    width:100%;
+    height:24px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(110,180,255,.65),
+            transparent
+        );
+
+}
+
+/* ===========================
    Footer
-========================================== */
+=========================== */
 
 footer{
 
     position:absolute;
 
-    bottom:20px;
+    bottom:18px;
 
     width:100%;
 
     text-align:center;
 
-    color:#7b869a;
+    color:#6e7f95;
 
     font-size:13px;
+
+    z-index:30;
 
 }
