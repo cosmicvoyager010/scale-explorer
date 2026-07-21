@@ -1,35 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Scale Explorer</title>
-<style>
-body{margin:0;background:#05070d;color:#fff;font-family:Arial,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;overflow:hidden}
-#stars{position:fixed;inset:0}
-.star{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;opacity:.6;animation:t 3s infinite alternate}
-@keyframes t{from{opacity:.2}to{opacity:1}}
-main{position:relative;text-align:center;z-index:1}
-button{padding:12px 24px;border-radius:999px;border:1px solid #666;background:#1b2435;color:#fff;cursor:pointer}
-#scene{display:none}
-</style>
+
+<link rel="stylesheet" href="styles.css">
+
 </head>
+
 <body>
+
 <div id="stars"></div>
+
 <main id="welcome">
+
 <h1>Scale Explorer</h1>
-<p>Experience the Scale of the Universe</p>
-<button onclick="start()">Begin Journey</button>
+
+<p>
+Experience the Scale of the Universe
+</p>
+
+<button id="beginButton">
+Begin Journey
+</button>
+
 </main>
+
 <main id="scene">
+
 <svg width="300" height="300" viewBox="0 0 300 300">
-<circle cx="150" cy="170" r="30" fill="#3ea6ff"/>
-<circle cx="235" cy="95" r="12" fill="#ddd"/>
+
+<circle
+cx="150"
+cy="170"
+r="30"
+fill="#3ea6ff"/>
+
+<circle
+cx="235"
+cy="95"
+r="12"
+fill="#dddddd"/>
+
 </svg>
+
 <h2>Earth → Moon</h2>
-<p>This is the starting point for Scale Explorer.</p>
+
+<p>
+
+This is the starting point for Scale Explorer.
+
+</p>
+
 </main>
-<script>
+
+<script src="app.js"></script>
+
+</body>
+</html>
 const s=document.getElementById('stars');
 for(let i=0;i<250;i++){let d=document.createElement('div');d.className='star';d.style.left=Math.random()*100+'vw';d.style.top=Math.random()*100+'vh';d.style.animationDelay=(Math.random()*3)+'s';s.appendChild(d);}
 function start(){welcome.style.display='none';scene.style.display='block';}
