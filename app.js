@@ -1,14 +1,13 @@
 /* ==========================================
    Scale Explorer v0.2
-   app.js
-   ========================================== */
+========================================== */
 
-// Wait until the page is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
 
-    // -----------------------------
-    // Generate Starfield
-    // -----------------------------
+    // ---------------------------------------
+    // Generate Stars
+    // ---------------------------------------
+
     const stars = document.getElementById("stars");
 
     for (let i = 0; i < 250; i++) {
@@ -17,11 +16,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         star.classList.add("star");
 
-        const randomSize = Math.random();
+        const size = Math.random();
 
-        if (randomSize > 0.92) {
+        if (size > 0.92) {
             star.classList.add("large");
-        } else if (randomSize > 0.65) {
+        } else if (size > 0.65) {
             star.classList.add("medium");
         }
 
@@ -29,21 +28,23 @@ document.addEventListener("DOMContentLoaded", () => {
         star.style.top = Math.random() * 100 + "%";
 
         star.style.animationDelay =
-            (Math.random() * 8).toFixed(2) + "s";
+            (Math.random() * 6).toFixed(2) + "s";
 
         stars.appendChild(star);
+
     }
 
-    // -----------------------------
-    // Begin Journey Button
-    // -----------------------------
-    const button = document.getElementById("beginButton");
+    // ---------------------------------------
+    // Welcome Screen
+    // ---------------------------------------
+
+    const beginButton = document.getElementById("beginButton");
     const welcome = document.getElementById("welcome");
     const universe = document.getElementById("universe");
 
-    if (button && welcome && universe) {
+    if (beginButton && welcome && universe) {
 
-        button.addEventListener("click", () => {
+        beginButton.addEventListener("click", () => {
 
             welcome.style.opacity = "0";
 
@@ -56,6 +57,27 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 1000);
 
         });
+
+    }
+
+    // ---------------------------------------
+    // Earth Animation
+    // ---------------------------------------
+
+    const earth = document.getElementById("earth");
+
+    if (earth) {
+
+        let angle = 0;
+
+        setInterval(() => {
+
+            angle += 0.2;
+
+            earth.style.transform =
+                `rotate(${angle}deg)`;
+
+        }, 40);
 
     }
 
