@@ -1,68 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Scale Explorer</title>
+    <title>Scale Explorer</title>
 
-<link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Experience the Scale of the Universe">
+
+    <link rel="stylesheet" href="styles.css">
 
 </head>
 
 <body>
 
-<div id="stars"></div>
+    <!-- Animated Star Background -->
+    <div id="stars"></div>
 
-<main id="welcome">
+    <!-- Welcome Screen -->
+    <section id="welcome">
 
-<h1>Scale Explorer</h1>
+        <h1>Scale Explorer</h1>
 
-<p>
-Experience the Scale of the Universe
-</p>
+        <p class="subtitle">
+            Experience the Scale of the Universe
+        </p>
 
-<button id="beginButton">
-Begin Journey
-</button>
+        <button id="beginButton">
+            Begin Journey
+        </button>
 
-</main>
+        <div class="version">
+            Version 0.2
+        </div>
 
-<main id="scene">
+    </section>
 
-<svg width="300" height="300" viewBox="0 0 300 300">
+    <!-- Main Experience -->
+    <main id="universe">
 
-<circle
-cx="150"
-cy="170"
-r="30"
-fill="#3ea6ff"/>
+        <div id="earth-container">
 
-<circle
-cx="235"
-cy="95"
-r="12"
-fill="#dddddd"/>
+            <div id="earth"></div>
 
-</svg>
+            <h2>Earth</h2>
 
-<h2>Earth → Moon</h2>
+            <p>
+                Your journey begins here.
+            </p>
 
-<p>
+        </div>
 
-This is the starting point for Scale Explorer.
+        <div id="moon-container">
 
-</p>
+            <div id="moon"></div>
 
-</main>
+            <h2>Moon</h2>
 
-<script src="app.js"></script>
+            <p id="moonInfo">
+                Distance: 384,400 km
+            </p>
+
+        </div>
+
+    </main>
+
+    <footer>
+        Scale Explorer © 2026
+    </footer>
+
+    <script src="app.js"></script>
 
 </body>
+
 </html>
-const s=document.getElementById('stars');
-for(let i=0;i<250;i++){let d=document.createElement('div');d.className='star';d.style.left=Math.random()*100+'vw';d.style.top=Math.random()*100+'vh';d.style.animationDelay=(Math.random()*3)+'s';s.appendChild(d);}
-function start(){welcome.style.display='none';scene.style.display='block';}
-</script>
-</body></html>
