@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Scale Explorer Journey</title>
+
+<style>
+
+body {
+    background: black;
+    color: white;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    padding-top: 60px;
+}
+
+.earth,
+.moon {
+    font-size: 120px;
+    animation: float 4s infinite ease-in-out;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes float {
+
+0% {
+transform: translateY(0);
+}
+
+50% {
+transform: translateY(-15px);
+}
+
+100% {
+transform: translateY(0);
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<h1>🌌 Scale Explorer Journey</h1>
+
+
+<section id="earthScene">
+
+<div class="earth">
+🌍
+</div>
+
+
+<h2>You are here</h2>
+
+
+<p>
+Your journey begins on Earth.
+</p>
+
+
+<p>
+Home of life.
+<br>
+Diameter: 12,742 km
+</p>
+
+
+<button onclick="startJourney()">
+Begin Journey →
+</button>
+
+
+</section>
+
+
+
+<section id="moonScene" class="hidden">
+
+
+<div class="moon">
+🌙
+</div>
+
+
+<h2>The Moon</h2>
+
+
+<p>
+Our nearest neighbour in space.
+</p>
+
+
+<p>
+Distance from Earth:
+<br>
+384,400 km
+</p>
+
+
+<button onclick="returnEarth()">
+Return to Earth
+</button>
+
+
+</section>
+
+
+
+<script>
+
+
+function startJourney(){
+
+document.getElementById("earthScene")
+.classList.add("hidden");
+
+
+document.getElementById("moonScene")
+.classList.remove("hidden");
+
+}
+
+
+
+function returnEarth(){
+
+document.getElementById("moonScene")
+.classList.add("hidden");
+
+
+document.getElementById("earthScene")
+.classList.remove("hidden");
+
+}
+
+
+</script>
+
+
+</body>
+</html>
