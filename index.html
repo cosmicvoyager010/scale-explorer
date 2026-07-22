@@ -304,3 +304,319 @@ button {
     cursor:pointer;
 
 }
+</style>
+
+</head>
+
+<body>
+
+
+<h1>🌌 Scale Explorer</h1>
+
+
+<div>
+← Smaller　　　　　　　　 Bigger →
+</div>
+
+
+
+<div class="scale-container" id="scaleButtons"></div>
+
+
+
+<div class="viewer" id="viewer">
+
+🌙
+
+</div>
+
+
+
+
+<div class="info">
+
+<h2 id="title"></h2>
+
+<p id="description"></p>
+
+</div>
+
+
+
+
+<div class="controls">
+
+
+<button onclick="previousObject()">
+
+← Previous
+
+</button>
+
+
+<button onclick="nextObject()">
+
+Next →
+
+</button>
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+const objects = [
+
+
+{
+name:"Quark",
+icon:"⚛️",
+text:"The smallest known building blocks of matter."
+},
+
+
+{
+name:"Atom",
+icon:"⚛️",
+text:"The basic unit that forms everything around us."
+},
+
+
+{
+name:"DNA",
+icon:"🧬",
+text:"The information system of life."
+},
+
+
+{
+name:"Cell",
+icon:"🔬",
+text:"The fundamental unit of living organisms."
+},
+
+
+{
+name:"Human",
+icon:"🧍",
+text:"You are here, exploring the universe."
+},
+
+
+{
+name:"Mountain",
+icon:"⛰️",
+text:"A giant feature of Earth's surface."
+},
+
+
+{
+name:"Earth",
+type:"earth",
+text:"You are here. Earth is a moving planet rotating through space. Every day, our planet turns once while traveling around the Sun."
+},
+
+
+{
+name:"Moon",
+icon:"🌙",
+text:"Earth's natural satellite. It influences tides and has shaped human exploration."
+},
+
+
+{
+name:"Sun",
+icon:"☀️",
+text:"The star that provides energy for life on Earth."
+},
+
+
+{
+name:"Solar System",
+icon:"🪐",
+text:"Our planetary neighborhood around the Sun."
+},
+
+
+{
+name:"Galaxy",
+icon:"🌌",
+text:"A huge collection of stars, gas, and planets."
+},
+
+
+{
+name:"Universe",
+icon:"✨",
+text:"Everything that exists: space, time, matter, and energy."
+}
+
+
+];
+
+
+
+let current = 7;
+
+
+
+const buttons =
+document.getElementById("scaleButtons");
+
+
+
+objects.forEach((obj,index)=>{
+
+
+let button=document.createElement("button");
+
+
+button.className="scale-button";
+
+
+button.innerText=obj.name;
+
+
+button.onclick=()=>showObject(index);
+
+
+buttons.appendChild(button);
+
+
+});
+
+
+
+
+
+function showObject(index){
+
+
+current=index;
+
+
+let obj=objects[index];
+
+
+
+document.getElementById("title").innerText=obj.name;
+
+
+document.getElementById("description").innerText=obj.text;
+
+
+
+let viewer=document.getElementById("viewer");
+
+
+
+if(obj.type==="earth"){
+
+
+viewer.innerHTML='<div class="earth"></div>';
+
+
+}
+
+else{
+
+
+viewer.innerHTML=
+'<div class="object">'+obj.icon+'</div>';
+
+
+}
+
+
+
+updateButtons();
+
+
+}
+
+
+
+
+
+function updateButtons(){
+
+
+document.querySelectorAll(".scale-button")
+.forEach((button,index)=>{
+
+
+if(index===current){
+
+
+button.classList.add("active");
+
+
+}
+
+else{
+
+
+button.classList.remove("active");
+
+
+}
+
+
+});
+
+
+}
+
+
+
+
+
+function nextObject(){
+
+
+if(current < objects.length-1){
+
+
+showObject(current+1);
+
+
+}
+
+
+}
+
+
+
+
+function previousObject(){
+
+
+if(current > 0){
+
+
+showObject(current-1);
+
+
+}
+
+
+}
+
+
+
+
+showObject(current);
+
+
+
+</script>
+
+
+</body>
+
+</html>
