@@ -4,123 +4,283 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Scale Explorer v0.2</title>
+<title>Scale Explorer v0.3</title>
 
 <style>
 
 body {
+
     margin:0;
-    background:#050816;
+
+    background:
+    radial-gradient(circle at center, #182850 0%, #050816 65%);
+
     color:white;
+
     font-family:Arial, sans-serif;
+
     text-align:center;
+
+    overflow-x:hidden;
+
 }
+
+
+/* Space stars */
+
+body::before {
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    background-image:
+    radial-gradient(circle, white 1px, transparent 1px),
+    radial-gradient(circle, white 1px, transparent 1px);
+
+    background-size:
+    120px 120px,
+    200px 200px;
+
+    background-position:
+    30px 40px,
+    80px 100px;
+
+    opacity:0.35;
+
+    pointer-events:none;
+
+}
+
+
 
 h1 {
-    margin:20px 0;
+
+    margin:20px;
+
 }
+
+
 
 .scale-container {
+
     display:flex;
+
     justify-content:center;
+
     flex-wrap:wrap;
+
     gap:8px;
+
     padding:10px;
+
 }
+
+
 
 .scale-button {
+
     background:#18213a;
+
     color:white;
+
     border:none;
+
     padding:8px 12px;
+
     border-radius:15px;
+
     cursor:pointer;
+
 }
+
+
 
 .scale-button:hover {
+
     background:#334b85;
+
 }
 
+
+
 .active {
+
     background:#4c8dff;
+
 }
+
+
 
 
 .viewer {
 
-    height:300px;
+    height:320px;
+
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
-    font-size:120px;
-
-    position:relative;
 }
+
+
 
 
 .object {
+
+    font-size:120px;
+
     animation:float 3s infinite ease-in-out;
+
 }
+
 
 
 @keyframes float {
 
-    0% {transform:translateY(0);}
-    50% {transform:translateY(-15px);}
-    100% {transform:translateY(0);}
+    0% {
+
+        transform:translateY(0);
+
+    }
+
+
+    50% {
+
+        transform:translateY(-15px);
+
+    }
+
+
+    100% {
+
+        transform:translateY(0);
+
+    }
 
 }
 
 
-/* Earth animation */
+
+
+/* Living Earth */
 
 .earth {
 
-    width:180px;
-    height:180px;
+
+    width:190px;
+
+    height:190px;
 
     border-radius:50%;
 
+
     background:
-    radial-gradient(circle at 30% 30%,
-    #6ee7ff,
-    #1478d4 40%,
-    #06234d 80%);
+
+    linear-gradient(
+
+    90deg,
+
+    #06152f,
+
+    #1478d4,
+
+    #4fd0ff,
+
+    #06234d
+
+    );
+
 
     box-shadow:
-    0 0 40px #4db8ff;
+
+    0 0 25px #4db8ff,
+
+    0 0 60px rgba(80,180,255,0.6),
+
+    0 0 100px rgba(80,180,255,0.3);
+
+
 
     animation:
+
     rotateEarth 12s linear infinite;
 
+
+    position:relative;
+
 }
+
+
+
+.earth::after {
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    right:0;
+
+    top:0;
+
+
+    width:50%;
+
+    height:100%;
+
+
+    border-radius:50%;
+
+
+    background:
+
+    rgba(0,0,30,0.55);
+
+
+}
+
 
 
 @keyframes rotateEarth {
 
+
     from {
+
         transform:rotate(0deg);
+
     }
 
+
     to {
+
         transform:rotate(360deg);
+
     }
 
 }
 
 
+
 .info {
 
-    padding:20px;
 
     max-width:600px;
 
     margin:auto;
 
+    padding:20px;
+
     font-size:18px;
 
 }
+
 
 
 .controls {
@@ -128,6 +288,7 @@ h1 {
     margin:20px;
 
 }
+
 
 
 button {
@@ -143,286 +304,3 @@ button {
     cursor:pointer;
 
 }
-
-</style>
-
-</head>
-
-
-<body>
-
-
-<h1>🌌 Scale Explorer</h1>
-
-
-<div>
-← Smaller　　　　　　　　 Bigger →
-</div>
-
-
-<div class="scale-container" id="scaleButtons"></div>
-
-
-
-<div class="viewer" id="viewer">
-
-🌙
-
-</div>
-
-
-
-<div class="info">
-
-<h2 id="title">
-Moon
-</h2>
-
-<p id="description">
-Natural satellite of Earth.
-</p>
-
-</div>
-
-
-
-<div class="controls">
-
-<button onclick="previousObject()">
-← Previous
-</button>
-
-
-<button onclick="nextObject()">
-Next →
-</button>
-
-
-</div>
-
-
-
-
-<script>
-
-
-const objects = [
-
-
-{
-name:"Quark",
-icon:"⚛️",
-text:"The smallest known building blocks of matter."
-},
-
-
-{
-name:"Atom",
-icon:"⚛️",
-text:"The basic unit that forms everything around us."
-},
-
-
-{
-name:"DNA",
-icon:"🧬",
-text:"The information system of life."
-},
-
-
-{
-name:"Cell",
-icon:"🔬",
-text:"The fundamental unit of living organisms."
-},
-
-
-{
-name:"Human",
-icon:"🧍",
-text:"You are here, exploring the universe."
-},
-
-
-{
-name:"Mountain",
-icon:"⛰️",
-text:"A giant feature of Earth's surface."
-},
-
-
-{
-name:"Earth",
-type:"earth",
-text:"Your home planet. Earth rotates every day and travels through space around the Sun."
-},
-
-
-{
-name:"Moon",
-icon:"🌙",
-text:"Earth's natural satellite. It influences tides and has shaped human exploration."
-},
-
-
-{
-name:"Sun",
-icon:"☀️",
-text:"The star that provides energy for life on Earth."
-},
-
-
-{
-name:"Solar System",
-icon:"🪐",
-text:"Our planetary neighborhood around the Sun."
-},
-
-
-{
-name:"Galaxy",
-icon:"🌌",
-text:"A huge collection of stars, gas, and planets."
-},
-
-
-{
-name:"Universe",
-icon:"✨",
-text:"Everything that exists: space, time, matter, and energy."
-}
-
-
-];
-
-
-let current = 7;
-
-
-
-const buttons =
-document.getElementById("scaleButtons");
-
-
-
-objects.forEach((obj,index)=>{
-
-
-let button=document.createElement("button");
-
-button.className="scale-button";
-
-button.innerText=obj.name;
-
-
-button.onclick=()=>showObject(index);
-
-
-buttons.appendChild(button);
-
-
-});
-
-
-
-function showObject(index){
-
-
-current=index;
-
-
-let obj=objects[index];
-
-
-document.getElementById("title").innerText=obj.name;
-
-
-document.getElementById("description").innerText=obj.text;
-
-
-
-let viewer=document.getElementById("viewer");
-
-
-if(obj.type==="earth"){
-
-viewer.innerHTML='<div class="earth"></div>';
-
-}
-
-else{
-
-viewer.innerHTML=
-'<div class="object">'+obj.icon+'</div>';
-
-}
-
-
-
-updateButtons();
-
-}
-
-
-
-
-function updateButtons(){
-
-
-let all=document.querySelectorAll(".scale-button");
-
-
-all.forEach((b,i)=>{
-
-
-if(i===current)
-
-b.classList.add("active");
-
-else
-
-b.classList.remove("active");
-
-
-});
-
-
-}
-
-
-
-function nextObject(){
-
-
-if(current < objects.length-1)
-
-showObject(current+1);
-
-
-}
-
-
-
-function previousObject(){
-
-
-if(current>0)
-
-showObject(current-1);
-
-
-}
-
-
-
-// Start with Moon
-
-showObject(current);
-
-
-</script>
-
-
-</body>
-
-</html>
